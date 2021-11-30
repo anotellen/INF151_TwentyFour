@@ -20,7 +20,7 @@ def processCallback():
     try:
         global filename
         process(filename)
-        updateDisplay("Filetype {} converted successfully!".format(filename.split(".")[1]))
+        updateDisplay("Filetype {} converted successfully!".format(filename.split(".")[-1]))
     except:
         updateDisplay("Failed to convert file: check filetype and encoding!")
         
