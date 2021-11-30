@@ -1,24 +1,29 @@
-# CITATIONS ----------
-# Code to write to HTML in Python written by William J. Turkel and Adam Crymble: 
 # https://programminghistorian.org/en/lessons/creating-and-viewing-html-files-with-python
-
+# write-html-2-mac.py
 import webbrowser
 import mammoth
-import Setup
-from html.parser import HTMLParser
 
-parser = HTMLParser()
-f = open('outputHTML.html','w')
 
-with open("INF151_Syllabus.docx", "rb") as docx_file:
-    result = mammoth.convert_to_html(docx_file)
-    text = result.value
-    #print(text)
-    with open('outputHTML.html', 'w') as html_file:
-        f.write(text)
+def process(path):
+    try:
+        custom_styles = "b => i"
+        result = mammoth.convert_to_html(path, style_map = custom_styles)
+        text = result.value
+        with open('output.html', 'w') as html_file:
+            html_file.write(text)
+    except:
+        print("Error")
 
-f.close()
-
-#Change path to reflect file location
-filename = Setup.filePath + 'outputHTML.html'
-webbrowser.open_new_tab(filename)
+    
+    
+    
+    
+def open_html(path):
+    filename = path
+    try:
+        #this is for Jason
+        cent_path = "C:/Program Files/CentBrowser/Application/chrome.exe %s"
+        webbrowser.get(cent_path).open_new_tab(filename)
+    except:
+        webbrowser.open_new_tab(filename)
+ 
