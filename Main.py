@@ -5,25 +5,21 @@ import mammoth
 
 
 def process(path):
-    try:
-        custom_styles = "b => i"
-        result = mammoth.convert_to_html(path, style_map = custom_styles)
-        text = result.value
-        with open('output.html', 'w') as html_file:
-            html_file.write(text)
-    except:
-        print("Error")
-
+    
+    custom_styles = "b => i"
+    result = mammoth.convert_to_html(path, style_map = custom_styles)
+    text = result.value
+    with open('output.html', 'w') as html_file:
+        html_file.write(text)
     
     
     
-    
-def open_html(path):
-    filename = path
+def open_html():
+    #filename = path
     try:
         #this is for Jason
         cent_path = "C:/Program Files/CentBrowser/Application/chrome.exe %s"
-        webbrowser.get(cent_path).open_new_tab(filename)
+        webbrowser.get(cent_path).open_new_tab("output.html")
     except:
-        webbrowser.open_new_tab(filename)
+        webbrowser.open_new_tab("output.html")
  

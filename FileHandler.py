@@ -6,7 +6,7 @@ from tkinter import filedialog
 from Main import process
 from Main import open_html
 
-filename = "INF151_Syllabus.docx"
+filename = ""
 
 def updateDisplay(myString):
     text.set(myString)
@@ -17,14 +17,20 @@ def SelectFileAction(event=None):
     updateDisplay(filename)
 
 def processCallback():
-    global filename
-    process(filename)
-
+    try:
+        global filename
+        process(filename)
+        updateDisplay("Filetype {} converted successfully!".format(filename.split(".")[1]))
+    except:
+        updateDisplay("Failed to convert file: check filetype and encoding!")
+        
 # Opens pdf files but downloads doc files
 def open_file():
-    global filename
-    open_html(filename)
-
+    try:    
+        open_html()
+    except:
+        updateDisplay("File not found: make sure you proccessed your file first!")
+        
 
 root = tk.Tk()
 root.title('Canvas Content Automation Tool')
